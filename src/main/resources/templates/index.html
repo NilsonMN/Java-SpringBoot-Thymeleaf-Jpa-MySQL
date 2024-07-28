@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeLeaf.org" lang="es" xmlns:xmls="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Index</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <a th:href="@{/nuevo}" class="btn btn-primary">Nuevo</a>
+        <table class="table">
+            <thead style="background-color: #5ba5ea">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombres</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="persona:${personas}">
+                    <td th:text="${persona.id}"></td>
+                    <td th:text="${persona.name}"></td>
+                    <td th:text="${persona.telefono}"></td>
+                    <td>
+                        <a th:href="@{/editar/}+${persona.id}" class="btn btn-warning">Editar</a>
+                        <form th:action="@{/eliminar/{id}(id=${persona.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
